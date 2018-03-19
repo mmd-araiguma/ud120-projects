@@ -65,6 +65,12 @@ plt.show()
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
+
+from sklearn.preprocessing import MinMaxScaler
+scaler=MinMaxScaler()
+scaler=scaler.fit(finance_features)
+print(scaler.transform([[200000.0,1000000]]))
+
 from sklearn.cluster import KMeans
 kmeans=KMeans(n_clusters=2,random_state=0).fit(finance_features)
 pred=kmeans.labels_
