@@ -49,5 +49,4 @@ for i in clf.feature_importances_:
 		print(i)
 		num=numpy.argmax(clf.feature_importances_)
 		print(num)
-
-print(vectorizer.get_feature_names()[num])
+		print(vectorizer.get_feature_names()[num])
