@@ -21,11 +21,37 @@ data_dict = pickle.load(open("../final_project/final_project_dataset.pkl", "r") 
 ### add more features to features_list!
 features_list = ["poi", "salary"]
 
+sort_keys = '../tools/python2_lesson13_keys.pkl'
+
 data = featureFormat(data_dict, features_list)
 labels, features = targetFeatureSplit(data)
 
 
 
 ### your code goes here 
-
-
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn import tree
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+"""
+features_train=features
+features_test=features
+labels_train=labels
+labels_test=labels
+"""
+features_train,features_test,labels_train,labels_test=train_test_split(features,labels,test_size=0.3,random_state=42)
+clf=tree.DecisionTreeClassifier()
+clf=clf.fit(features_train,labels_train)
+pred=clf.predict(features_test)
+print(pred)
+#pred=np.zeros(29)
+print(accuracy_score(labels_test,pred))
+count=0
+for (i,n) in zip(pred,labels_test):
+	if i==n and i==1:
+		count+=1
+print(count)
+print(precision_score(labels_test,pred,average='binary'))
+print(recall_score(labels_test,pred,average='binary'))
